@@ -1,7 +1,5 @@
 
-
-  export function Cards({cardChoice, setCardChoice, data, setData, wins, setWins}) {
-
+  export function Cards({cardChoice, setCardChoice, data, setData, results, setResults}) {
 
   function handleClick(e) {
     console.log("clicked", e.target.className)
@@ -12,16 +10,15 @@
       console.log(data)
     } else {
       console.log( "no")
+      setResults([...results, false])
       setCardChoice([])
     }
    
     if (cardChoice.length === data.length - 1) {
-      setWins(1)
+      setResults([...results, true])
+      console.log(results)
       console.log("WIN")
     }
-    // check win
-    // if win call for new images
-    // maybe if the JSON changes?
   }
 
     const list = data.map((ele, index) => {
@@ -29,8 +26,6 @@
     });
     return list
   }
-
-
 
 
   function shuffle(array) {
