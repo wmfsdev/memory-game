@@ -1,30 +1,41 @@
 
-  export function Cards({cardChoice, setCardChoice, data, setData, results, setResults}) {
+  export function Cards({cardChoice, setCardChoice, data, setData, results, setResults, highScore, setHighScore}) {
 
   function handleClick(e) {
-    console.log("clicked", e.target.className)
-
+    
     if (!cardChoice.includes(e.target.className)) {
-      setCardChoice([...cardChoice, e.target.className])
+      setCardChoice([...cardChoice, e.target.className])  
+      handleHighScore(cardChoice)
       setData(shuffle(data))
-      console.log(data)
     } else {
-      console.log( "no")
       setResults([...results, false])
       setCardChoice([])
     }
-   
-    if (cardChoice.length === data.length - 1) {
+    if (cardChoice.length === data.length) {
+      setCardChoice([...cardChoice, e.target.className])
+      handleHighScore(data)
+      setCardChoice([])
       setResults([...results, true])
-      console.log(results)
-      console.log("WIN")
     }
   }
 
-    const list = data.map((ele, index) => {
-      return <div key={index} onClick={handleClick} className={ele}>{ele}</div>
-    });
-    return list
+  function handleHighScore(state) {
+   
+    if (state === cardChoice) {
+      if (cardChoice.length >= highScore) { 
+        setHighScore(state.length + 1)
+      }
+    }
+    if (state === data) {
+      setHighScore(data.length)
+    }
+  }
+
+  const list = data.map((ele, index) => {
+    return <div key={index} onClick={handleClick} className={ele}>{ele}</div>
+  });
+  return list
+  
   }
 
 

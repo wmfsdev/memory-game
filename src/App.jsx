@@ -7,14 +7,17 @@ function App() {
   const [data, setData] = useState([])
   const [cardChoice, setCardChoice] = useState([])
   const [results, setResults] = useState([])
+  const [highScore, setHighScore] = useState(0)
+
  
   useEffect(() => {
     setData(["one", "two", "three"]) // mock API call
-    console.log("you won", results)
+  //  console.log("you won", results)
   }, [results])
 
-  const winCount = results.filter((item) => item === true)
-  console.log(winCount)
+  const winCount = results.filter((result) => result === true)
+ // console.log(winCount)
+
   
   return (
     <>
@@ -24,10 +27,14 @@ function App() {
       data={data}
       setData={setData}
       results={results}
-      setResults={setResults}>
+      setResults={setResults}
+      highScore={highScore}
+      setHighScore={setHighScore}>
     </Cards>
     <h1>Score: {cardChoice.length}</h1>
+    <h2>High Score: {highScore}</h2>
     <h2>Wins: {`${winCount.length}/${results.length}`}</h2>
+    
     </>
   )
  
