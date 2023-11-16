@@ -6,8 +6,25 @@
   gap: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 div {
   font-size: 2rem;
+}
+
+.card-container {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  object-fit: scale-down;
+  gap: 30px;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center, center;
+  border-radius: 10px;
 }

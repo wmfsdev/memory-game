@@ -31,11 +31,11 @@
     }
   }
 
-  const list = data.map((ele, index) => {
-    return <div key={index} onClick={handleClick} className={ele}>{ele}</div>
+  const list = data.map((obj) => {
+    return <img src={obj.url} key={obj.id} onClick={handleClick} className={obj.id}></img>
   });
   return list
-  
+
   }
 
 
