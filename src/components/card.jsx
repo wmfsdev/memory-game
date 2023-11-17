@@ -1,5 +1,5 @@
 
-  export function Cards({cardChoice, setCardChoice, data, setData, results, setResults, highScore, setHighScore}) {
+  export function Cards({cardChoice, setCardChoice, data, setData, results, setResults, highScore, setHighScore, setLoading}) {
 
   function handleClick(e) {
     
@@ -11,7 +11,8 @@
       setResults([...results, false])
       setCardChoice([])
     }
-    if (cardChoice.length === data.length) {
+    if (cardChoice.length === data.length) {  
+    //  setLoading(true)
       setCardChoice([...cardChoice, e.target.className])
       handleHighScore(data)
       setCardChoice([])
@@ -31,10 +32,27 @@
     }
   }
 
-  const list = data.map((obj) => {
-    return <img src={obj.url} key={obj.id} onClick={handleClick} className={obj.id}></img>
-  });
-  return list
+  function handleLoad(index) {
+    if (index === data.length - 1) {
+      // setTimeout(() => {
+      //   setLoading(false)
+      // }, 1000);
+      console.log("test")
+    }
+  }
+
+  return (
+    <>
+      { data.map((obj, index) => (
+        <img src={obj.url} key={obj.id} onLoad={() => handleLoad(index)} onClick={handleClick} className={obj.id}></img>
+      ))}
+    </>
+  )
+  // const list = data.map((obj, index) => {
+  //   return <img src={obj.url} key={obj.id} onLoad={() => handleLoad(index)} onClick={handleClick} className={obj.id}></img>
+  // });
+
+  // return list
 
   }
 

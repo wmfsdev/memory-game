@@ -15,10 +15,12 @@ div {
 
 .card-container {
   justify-content: center;
+  min-height: 450px;
   display: flex;
   flex-wrap: wrap;
   object-fit: scale-down;
   gap: 30px;
+  position: relative;
 }
 
 img {
@@ -27,4 +29,37 @@ img {
   object-fit: cover;
   object-position: center, center;
   border-radius: 10px;
+  cursor: grab;
+}
+
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  z-index: 1;
+}
+
+.spinner {
+
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #3d5af1 transparent #3d5af1 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }
