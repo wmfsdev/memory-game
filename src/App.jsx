@@ -14,7 +14,7 @@ function App() {
  
   useEffect(() => {
     let controller = new AbortController
-    fetch(`https://api.thecatapi.com/v1/images/search?limit=1`, 
+    fetch(`https://api.thecatapi.com/v1/images/search?limit=10`, 
       { signal: controller.signal }, 
       { mode: 'cors' })
       .then(function(response) {
@@ -34,12 +34,12 @@ function App() {
 
   useEffect(() => {
     if (loading) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setLoading(false)
-      }, 3000);
+      }, 2000);
+      return () => clearTimeout(timer)
     }
-    
-  }, [results, loading]);
+  }, [loading]);
 
   const winCount = results.filter((result) => result === true)
 

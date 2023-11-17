@@ -3,20 +3,24 @@
 
   function handleClick(e) {
     
-    if (!cardChoice.includes(e.target.className)) {
+    if (cardChoice.includes(e.target.className)) {
+      setResults([...results, false])
+      setCardChoice([])
+    } else { 
       setCardChoice([...cardChoice, e.target.className])  
       handleHighScore(cardChoice)
       setData(shuffle(data))
-    } else {
-      setResults([...results, false])
-      setCardChoice([])
     }
-    if (cardChoice.length === data.length) {  
-    //  setLoading(true)
-      setCardChoice([...cardChoice, e.target.className])
+    checkWin()
+  }
+
+  function checkWin() {
+    if (cardChoice.length + 1 === data.length) {  
+      setLoading(true)
+      setResults([...results, true])
+      // setCardChoice([...cardChoice, e.target.className])
       handleHighScore(data)
       setCardChoice([])
-      setResults([...results, true])
     }
   }
 
@@ -32,28 +36,18 @@
     }
   }
 
-  function handleLoad(index) {
-    if (index === data.length - 1) {
-      // setTimeout(() => {
-      //   setLoading(false)
-      // }, 1000);
-      console.log("test")
-    }
-  }
-
   return (
     <>
-      { data.map((obj, index) => (
-        <img src={obj.url} key={obj.id} onLoad={() => handleLoad(index)} onClick={handleClick} className={obj.id}></img>
+      { data.map((obj) => (
+        <img src={obj.url} key={obj.id} onClick={handleClick} className={obj.id}></img>
       ))}
     </>
   )
+
   // const list = data.map((obj, index) => {
   //   return <img src={obj.url} key={obj.id} onLoad={() => handleLoad(index)} onClick={handleClick} className={obj.id}></img>
   // });
-
   // return list
-
   }
 
 
