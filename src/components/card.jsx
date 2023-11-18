@@ -2,15 +2,12 @@
   export function Cards({cardChoice, setCardChoice, data, setData, results, setResults, highScore, setHighScore, setLoading}) {
 
   function handleClick(e) {
-    
     if (cardChoice.includes(e.target.className)) {
       setCardChoice([])
       setLoading(true)
       setResults([...results, false])
-      
     } else { 
       setCardChoice([...cardChoice, e.target.className])  
-    
       handleHighScore(cardChoice)
       setData(shuffle(data))
     }
@@ -27,7 +24,6 @@
   }
 
   function handleHighScore(state) {
-   
     if (state === cardChoice) {
       if (cardChoice.length >= highScore) { 
         setHighScore(state.length + 1)
@@ -45,11 +41,6 @@
       ))}
     </>
   )
-
-  // const list = data.map((obj, index) => {
-  //   return <img src={obj.url} key={obj.id} onClick={handleClick} className={obj.id}></img>
-  // });
-  // return list
   }
 
 

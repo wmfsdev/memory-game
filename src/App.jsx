@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Cards } from './components/card'
 import './App.css'
 import { fetchData } from './components/api'
@@ -13,16 +13,12 @@ function App() {
 
 
   useEffect(() => {
-
     const controller = new AbortController();
-  
     const fetch = async (controller) => {
-      console.log(await fetchData(controller))
       setData(await fetchData(controller))
     }
     fetch(controller)
-
-   return () => controller.abort()
+    return () => controller.abort()
   }, [results])
 
 
@@ -37,8 +33,12 @@ function App() {
 
   const winCount = results.filter((result) => result === true)
 
+ 
+  
+
   return (
-    <> 
+    <>
+    <h3>Good luck R and A!</h3>
     <div className='card-container'> 
     { loading && <div className='loading'>
       <div className='spinner'></div>
@@ -56,8 +56,6 @@ function App() {
         >
       </Cards>
     </div>
-    
-
     <h1>Score: {cardChoice.length}</h1>
     <h2>High Score: {highScore}</h2>
     <h2>Wins: {`${winCount.length}/${results.length}`}</h2>

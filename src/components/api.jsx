@@ -1,5 +1,4 @@
 
-
    export const fetchData = async (controller) => {
       return fetch(`https://api.thecatapi.com/v1/images/search?limit=10`, 
          { signal: controller.signal }, 
@@ -9,11 +8,9 @@
       })
       .then(function(response) {
          controller = null
-         console.log(response)
          return response
       })
       .catch(function(error) {
          return []
       })
-   
    }
