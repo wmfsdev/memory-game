@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Cards } from './components/card'
 import './App.css'
-
+import { fetchData } from './components/api'
 
 function App() {
   
@@ -11,26 +11,20 @@ function App() {
   const [highScore, setHighScore] = useState(0)
   const [loading, setLoading] = useState(true)
 
- 
+
   useEffect(() => {
-    let controller = new AbortController
-    fetch(`https://api.thecatapi.com/v1/images/search?limit=10`, 
-      { signal: controller.signal }, 
-      { mode: 'cors' })
-      .then(function(response) {
-        return response.json()
-      })
-      .then(function(response) {
-        console.log(response)
-        setData(response)
-        controller = null
-      })
-      .catch(function(error) {
-        // console.log(error)
-      })
-     
-      return () => controller?.abort()
+
+    const controller = new AbortController();
+  
+    const fetch = async (controller) => {
+      console.log(await fetchData(controller))
+      setData(await fetchData(controller))
+    }
+    fetch(controller)
+
+   return () => controller.abort()
   }, [results])
+
 
   useEffect(() => {
     if (loading) {

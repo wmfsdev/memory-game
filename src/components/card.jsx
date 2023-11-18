@@ -4,10 +4,13 @@
   function handleClick(e) {
     
     if (cardChoice.includes(e.target.className)) {
-      setResults([...results, false])
       setCardChoice([])
+      setLoading(true)
+      setResults([...results, false])
+      
     } else { 
       setCardChoice([...cardChoice, e.target.className])  
+    
       handleHighScore(cardChoice)
       setData(shuffle(data))
     }
@@ -18,7 +21,6 @@
     if (cardChoice.length + 1 === data.length) {  
       setLoading(true)
       setResults([...results, true])
-      // setCardChoice([...cardChoice, e.target.className])
       handleHighScore(data)
       setCardChoice([])
     }
@@ -45,7 +47,7 @@
   )
 
   // const list = data.map((obj, index) => {
-  //   return <img src={obj.url} key={obj.id} onLoad={() => handleLoad(index)} onClick={handleClick} className={obj.id}></img>
+  //   return <img src={obj.url} key={obj.id} onClick={handleClick} className={obj.id}></img>
   // });
   // return list
   }
