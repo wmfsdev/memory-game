@@ -1,5 +1,6 @@
 
-  export function Cards({cardChoice, setCardChoice, data, setData, results, setResults, highScore, setHighScore, setLoading}) {
+  export function Cards({cardChoice, setCardChoice, data, setData, results, setResults, highScore, setHighScore, setLoading }) {
+
 
   function handleClick(e) {
     if (cardChoice.includes(e.target.className)) {
@@ -42,7 +43,6 @@
     </>
   )
   }
-
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {

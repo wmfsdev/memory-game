@@ -4,6 +4,8 @@
   padding: 2rem;
   text-align: center;
   gap: 10px;
+  padding-top: 50px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +21,7 @@ div {
   min-height: 450px;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 30px;
   object-fit: scale-down;
   gap: 30px;
   position: relative;
@@ -33,6 +36,9 @@ img {
   cursor: grab;
 }
 
+h1, h2 {
+  margin-block-start: 0rem;
+}
 
 .loading {
   display: flex;
